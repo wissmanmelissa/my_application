@@ -19,8 +19,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //get the size of the screen
+        WindowSizing setWindowSize = new WindowSizing();
+        setWindowSize.setWindowSize(this);
+
         //set toolbar height to 1/10th size of screen and set as Activity's ActionBar
-        int actionBarSize = new WindowSizing().returnActionBarSize();
+        int actionBarSize = setWindowSize.returnActionBarSize();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.getLayoutParams().height = actionBarSize;
         setSupportActionBar(toolbar);
