@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         Button option1 = (Button)findViewById(R.id.option1);
         Button option2 = (Button)findViewById(R.id.option2);
 
-        /*set listener so button will move user option1 search page
+        /*set listener so button will move user to author and title search page
         when clicked*/
         option1.setOnClickListener(new View.OnClickListener()
         {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-       /*set listener so button will move user option2 search page
+       /*set listener so button will move user to subject search page
         when clicked*/
         option2.setOnClickListener(new View.OnClickListener()
         {
