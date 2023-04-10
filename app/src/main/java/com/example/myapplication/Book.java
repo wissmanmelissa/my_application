@@ -8,9 +8,17 @@ public class Book
     private Date publishDate;
     private Format format;
     private Subject subject;
-    private boolean checkedOut;
+    private boolean checkedOut = false;
 
-    public void setAuthor(String firstName, String lastName)
+    Book(String firstName, String lastName, Date date, String format, String subject)
+    {
+        setAuthor(firstName, lastName);
+        setDate(date);
+        setFormat(format);
+        setSubject(subject);
+    }
+
+    private void setAuthor(String firstName, String lastName)
     {
         authorFirst = firstName;
         authorLast = lastName;
@@ -21,7 +29,7 @@ public class Book
         return authorFirst + authorLast;
     }
 
-    public void setDate(Date date)
+    private void setDate(Date date)
     {
         publishDate = date;
     }
@@ -41,7 +49,7 @@ public class Book
         return checkedOut;
     }
 
-    public void setFormat(String formatting)
+    private void setFormat(String formatting)
     {
         for(Format i : Format.values())
         {
@@ -62,7 +70,7 @@ public class Book
         return null;
     }
 
-    public void setSubject(String topic)
+    private void setSubject(String topic)
     {
         for(Subject i : Subject.values())
         {
