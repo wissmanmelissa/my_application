@@ -6,8 +6,8 @@ public class Book
     private String authorFirst;
     private String authorLast;
     private Date publishDate;
-    //private String format;
-    //private String subject;
+    private Format format;
+    private Subject subject;
     private boolean checkedOut;
 
     public void setAuthor(String firstName, String lastName)
@@ -40,4 +40,56 @@ public class Book
     {
         return checkedOut;
     }
+
+    public void setFormat(String formatting)
+    {
+        for(Format i : Format.values())
+        {
+            if(i.toString() == formatting)
+            {
+                format = i;
+            }
+        }
+    }
+
+    public String returnFormat()
+    {
+        if(subject != null)
+        {
+            return format.toString();
+        }
+
+        return null;
+    }
+
+    public void setSubject(String topic)
+    {
+        for(Subject i : Subject.values())
+        {
+            if(i.toString() == topic)
+            {
+                subject = i;
+            }
+        }
+    }
+
+    public String returnSubject()
+    {
+        if(subject != null)
+        {
+            return subject.toString();
+        }
+
+        return null;
+    }
+}
+
+enum Format
+{
+    PAPERBACK, HARDBACK, AUDIO, DIGITAL
+}
+
+enum Subject
+{
+    BIOLOGY, FANTASY, PSYCHOLOGY, HISTORY
 }
