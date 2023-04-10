@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -47,7 +49,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                //Intent startIntent = new Intent(MainActivity.this, AuthorAndTitleSearch.class);
+                //startActivity(startIntent);
             }
         });
 
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                //Intent startIntent = new Intent(MainActivity.this, SubjectSearch.class);
+                //startActivity(startIntent);
             }
         });
     }
