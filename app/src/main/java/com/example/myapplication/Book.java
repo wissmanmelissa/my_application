@@ -3,30 +3,32 @@ import java.util.Date;
 
 public class Book
 {
-    private String authorFirst;
-    private String authorLast;
+    private String[] authorNames;
     private Date publishDate;
     private Format format;
     private Subject subject;
     private boolean checkedOut = false;
 
-    Book(String firstName, String lastName, Date date, String format, String subject)
+    Book(Date date, String format, String subject)
     {
-        setAuthor(firstName, lastName);
         setDate(date);
         setFormat(format);
         setSubject(subject);
     }
 
-    private void setAuthor(String firstName, String lastName)
+    private void setAuthors(String... names)
     {
-        authorFirst = firstName;
-        authorLast = lastName;
+        authorNames = new String[names.length];
+
+        for(int i = 0; i < names.length; i++)
+        {
+            authorNames[i] = names[i];
+        }
     }
 
-    public String returnAuthor()
+    public String[] returnAuthor()
     {
-        return authorFirst + authorLast;
+        return authorNames;
     }
 
     private void setDate(Date date)
