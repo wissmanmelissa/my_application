@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainScreen extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity
 
         //generate screen display using "activity_main" XML file
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_screen);
 
         //get the size of the screen
         WindowSizing setWindowSize = new WindowSizing();
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity
         TextView title = (TextView)findViewById(R.id.title);
         title.setTextSize(TypedValue.COMPLEX_UNIT_PX, widgetSize);
 
-        //buttons to move user to option1 or option2 page
+        /*buttons to move user to author and/or title search OR
+        subject pagE*/
         Button option1 = (Button)findViewById(R.id.option1);
         Button option2 = (Button)findViewById(R.id.option2);
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //Intent startIntent = new Intent(MainActivity.this, AuthorAndTitleSearch.class);
+                //Intent startIntent = new Intent(MainScreen.this, AuthorAndTitleSearch.class);
                 //startActivity(startIntent);
             }
         });
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //Intent startIntent = new Intent(MainActivity.this, SubjectSearch.class);
+                //Intent startIntent = new Intent(MainScreen.this, SubjectSearch.class);
                 //startActivity(startIntent);
             }
         });
