@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -49,8 +50,8 @@ public class MainScreen extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //Intent startIntent = new Intent(MainScreen.this, AuthorAndTitleSearch.class);
-                //startActivity(startIntent);
+                Intent startIntent = new Intent(MainScreen.this, AuthorAndTitleSearch.class);
+                startActivity(startIntent);
             }
         });
 
