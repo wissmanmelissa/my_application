@@ -62,8 +62,8 @@ public class MainScreen extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //Intent startIntent = new Intent(MainScreen.this, SubjectSearch.class);
-                //startActivity(startIntent);
+                Intent startIntent = new Intent(MainScreen.this, SubjectSearch.class);
+                startActivity(startIntent);
             }
         });
     }
