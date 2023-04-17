@@ -1,4 +1,4 @@
-package com.example.myapplication.DataObjects;
+package com.example.myapplication;
 import java.util.Date;
 
 public class Book
