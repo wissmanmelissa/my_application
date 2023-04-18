@@ -66,16 +66,18 @@ public class Book
     {
         for(Format i : Format.values())
         {
-            if(i.toString() == formatting)
+            if(i.name().equals(formatting))
             {
+                //Log.e("format", i.name() + " =/= " + formatting);
                 format = i;
+                break;
             }
         }
     }
 
     public String returnFormat()
     {
-        if(subject != null)
+        if(format != null)
         {
             return format.toString();
         }
@@ -87,7 +89,7 @@ public class Book
     {
         for(Subject i : Subject.values())
         {
-            if(i.toString() == topic)
+            if(i.name().equals(topic))
             {
                 subject = i;
             }
