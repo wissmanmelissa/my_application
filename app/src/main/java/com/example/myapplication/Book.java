@@ -1,22 +1,23 @@
 package com.example.myapplication;
-import java.util.Date;
 
 public class Book
 {
     private String[] authorNames;
-    private Date publishDate;
+    private String title;
+    private String publishDate;
     private Format format;
     private Subject subject;
     private boolean checkedOut = false;
 
-    Book(Date date, String format, String subject)
+    Book(String title, String date, String format, String subject)
     {
         setDate(date);
         setFormat(format);
         setSubject(subject);
+        setTitle(title);
     }
 
-    private void setAuthors(String... names)
+    public void setAuthors(String[] names)
     {
         authorNames = new String[names.length];
 
@@ -31,14 +32,24 @@ public class Book
         return authorNames;
     }
 
-    private void setDate(Date date)
+    private void setDate(String date)
     {
         publishDate = date;
     }
 
-    public Date returnDate()
+    public String returnDate()
     {
         return publishDate;
+    }
+
+    private void setTitle(String id)
+    {
+        title = id;
+    }
+
+    public String returnTitle()
+    {
+        return title;
     }
 
     public void setCheckedOut()
