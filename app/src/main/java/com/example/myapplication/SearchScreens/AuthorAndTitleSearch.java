@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SearchScreens;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.myapplication.R;
+import com.example.myapplication.WindowSizing;
 
 public class AuthorAndTitleSearch extends AppCompatActivity
 {

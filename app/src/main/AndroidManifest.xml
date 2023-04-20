@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".SubjectSearch"
+            android:name=".SearchScreens.SubjectSearch"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
+            android:name=".SearchScreens.MainScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AuthorAndTitleSearch"
+            android:name=".SearchScreens.AuthorAndTitleSearch"
             android:exported="false"></activity>
     </application>
 

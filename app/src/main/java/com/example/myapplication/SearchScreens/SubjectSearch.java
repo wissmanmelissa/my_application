@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SearchScreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.myapplication.DataObjects.Book.Subject;
+import com.example.myapplication.R;
+import com.example.myapplication.WindowSizing;
 
 public class SubjectSearch extends AppCompatActivity
 {
