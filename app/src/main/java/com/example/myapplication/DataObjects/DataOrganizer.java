@@ -1,7 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.DataObjects;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.example.myapplication.DataObjects.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import com.example.myapplication.DataObjects.Book;
 
 public class DataOrganizer
 {

@@ -1,7 +1,17 @@
-package com.example.myapplication;
+package com.example.myapplication.DataObjects;
 
 public class Book
 {
+    public enum Format
+    {
+        PAPERBACK, HARDBACK, AUDIO, DIGITAL
+    }
+
+    public enum Subject
+    {
+        BIOLOGY, FANTASY, PSYCHOLOGY, HISTORY
+    }
+
     private String[] authorNames;
     private String title;
     private String publishDate;
@@ -9,7 +19,7 @@ public class Book
     private Subject subject;
     private boolean checkedOut = false;
 
-    Book(String title, String date, String format, String subject)
+    public Book(String title, String date, String format, String subject)
     {
         setDate(date);
         setFormat(format);
@@ -105,14 +115,4 @@ public class Book
 
         return null;
     }
-}
-
-enum Format
-{
-    PAPERBACK, HARDBACK, AUDIO, DIGITAL
-}
-
-enum Subject
-{
-    BIOLOGY, FANTASY, PSYCHOLOGY, HISTORY
 }
