@@ -10,12 +10,17 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class DataOrganizer
 {
     //list of ALL books available
     Book[] listOfBooks;
+
+    //Map that maps author name to list of associated books
+    HashMap<String, List<Book>> bookAuthorMap;
 
     Context mContext;
 
@@ -86,5 +91,50 @@ public class DataOrganizer
 
         //returns list of ALL books
         return listOfBooks;
+    }
+
+    //returns Map that maps author name to list of associated books
+    public HashMap<String, List<Book>> getAuthorMap()
+    {
+        //if hashmap hasn't yet been created, intialize hashmap
+        if(bookAuthorMap == null)
+        {
+            bookAuthorMap = new HashMap<>();
+
+            //if list of books hasn't been created, initialize list of books
+            if(listOfBooks == null)
+            {
+                getBooks();
+            }
+
+
+            for(int i = 0; i < listOfBooks.length; i++)
+            {
+                /*transverse list of authors for each book and map author names
+                to ALL books associated with author*/
+                for(int x = 0; x < listOfBooks[i].returnAuthor().length; x++)
+                {
+                    /*if author name already mapped to one or more books,
+                    simply add new book to already existing list*/
+                    if(bookAuthorMap.containsKey(listOfBooks[i].returnAuthor()[x]))
+                    {
+                        List<Book> currentList = bookAuthorMap.get(listOfBooks[i].returnAuthor()[x]);
+                        currentList.add(listOfBooks[i]);
+                        bookAuthorMap.replace(listOfBooks[i].returnAuthor()[x], currentList);
+                    }
+                    /*if author name ISN'T mapped to ANY books,
+                    create new list of books and map to author name*/
+                    else
+                    {
+                        List<Book> currentList = new ArrayList<>();
+                        currentList.add(listOfBooks[i]);
+                        bookAuthorMap.put(listOfBooks[i].returnAuthor()[x], currentList);
+                    }
+                }
+
+            }
+        }
+
+        return bookAuthorMap;
     }
 }
