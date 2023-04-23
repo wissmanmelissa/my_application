@@ -24,12 +24,15 @@ public class DataOrganizer
 
     //Map that maps author name to list of associated books
     HashMap<String, List<Book>> bookAuthorMap;
+    //Map that maps each subject to list of associated books
+    HashMap<String, List<Book>> bookSubjectMap;
+
 
     Context mContext;
 
     /*"mContext" initialized to Context of
     Activity using current "DataOrganizer" Object*/
-    DataOrganizer(Context context)
+    public DataOrganizer(Context context)
     {
         mContext = context;
     }
@@ -60,7 +63,6 @@ public class DataOrganizer
                     {
                         JSONObject currentObj = jsonArray.getJSONObject(x);
                         Book currentBook = new Book(currentObj.getString("name"), currentObj.getString("date"), currentObj.getString("format"), currentObj.getString("subject"));
-
                         /*inner array of author names used to initialize list of author names
                         contained in current "Book" object*/
                         JSONArray authorArray = currentObj.getJSONArray("authors");
@@ -139,5 +141,45 @@ public class DataOrganizer
         }
 
         return bookAuthorMap;
+    }
+
+    //returns Map that maps each subject to list of associated books
+    public HashMap<String, List<Book>> getSubjectMap()
+    {
+        //if hashmap hasn't yet been created, intialize hashmap
+        if(bookSubjectMap == null)
+        {
+            bookSubjectMap = new HashMap<>();
+
+            //if list of books hasn't been created, initialize list of books
+            if(listOfBooks == null)
+            {
+                getBooks();
+            }
+
+
+            for(int i = 0; i < listOfBooks.length; i++)
+            {
+                    /*if subject already mapped to one or more books,
+                    simply add new book to already existing list*/
+                    if(bookSubjectMap.containsKey(listOfBooks[i].returnSubject()))
+                    {
+                        List<Book> currentList = bookSubjectMap.get(listOfBooks[i].returnSubject());
+                        currentList.add(listOfBooks[i]);
+                        bookSubjectMap.replace(listOfBooks[i].returnSubject(), currentList);
+                    }
+                    /*if subject ISN'T mapped to ANY books,
+                    create new list of books and map to subject*/
+                    else
+                    {
+                        List<Book> currentList = new ArrayList<>();
+                        currentList.add(listOfBooks[i]);
+                        bookSubjectMap.put(listOfBooks[i].returnSubject(), currentList);
+                    }
+
+            }
+        }
+
+        return bookSubjectMap;
     }
 }
