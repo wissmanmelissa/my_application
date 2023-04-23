@@ -8,12 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.myapplication.DataObjects.*;
 import com.example.myapplication.R;
 import com.example.myapplication.WindowSizing;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class AuthorAndTitleSearch extends AppCompatActivity
 {
@@ -57,7 +63,49 @@ public class AuthorAndTitleSearch extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                DataOrganizer data = new DataOrganizer(mContext);
 
+                List<Book> listOfOptions = new ArrayList<>();
+
+                if(!author_input.getText().toString().trim().equals(""))
+                {
+                    HashMap<String, List<Book>> authorBooks = data.getAuthorMap();
+                    List<Book> listOfBooks = authorBooks.get(author_input.getText().toString().trim());
+
+                    if(listOfBooks != null)
+                    {
+                        if(!title_input.getText().toString().trim().equals(""))
+                        {
+                            for(int x = 0; x < listOfBooks.size(); x++)
+                            {
+                                if(listOfBooks.get(x).returnTitle().equals(title_input.getText().toString().trim()))
+                                {
+                                    listOfOptions.add(listOfBooks.get(x));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            listOfOptions = listOfBooks;
+                        }
+                    }
+                }
+                else if(!title_input.getText().toString().trim().equals(""))
+                {
+                    Book[] listOfBooks = data.getBooks();
+
+                    for(int i = 0; i < listOfBooks.length; i++)
+                    {
+                        if(listOfBooks[i].returnTitle().equals(title_input.getText().toString().trim()))
+                        {
+                            listOfOptions.add(listOfBooks[i]);
+                        }
+                    }
+                }
+                else
+                {
+                    Toast.makeText(mContext, "Please provide different search parameters", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
