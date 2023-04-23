@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,9 +16,16 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.DataObjects.Book;
 import com.example.myapplication.DataObjects.Book.Subject;
+import com.example.myapplication.DataObjects.DataOrganizer;
 import com.example.myapplication.R;
 import com.example.myapplication.WindowSizing;
+
+import java.sql.DatabaseMetaData;
+import java.util.HashMap;
+import java.util.List;
 
 public class SubjectSearch extends AppCompatActivity
 {
@@ -142,7 +150,9 @@ public class SubjectSearch extends AppCompatActivity
                 //if user provided chosen a specific subject
                 else
                 {
-
+                    DataOrganizer data = new DataOrganizer(mContext);
+                    HashMap<String, List<Book>> listOfBooks = data.getSubjectMap();
+                    List<Book> list = listOfBooks.get(subject_choice);
                 }
             }
         });
