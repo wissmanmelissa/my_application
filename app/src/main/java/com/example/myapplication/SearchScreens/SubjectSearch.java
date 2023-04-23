@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +30,8 @@ import java.util.List;
 
 public class SubjectSearch extends AppCompatActivity
 {
+    //chose chosen by user
     String subject_choice;
-
     public void setSubjectChoice(String subject_chosen)
     {
         subject_choice = subject_chosen;
@@ -87,14 +88,14 @@ public class SubjectSearch extends AppCompatActivity
         //Set of possible book subjects used to initialize subject spinner
         String[] subjects;
 
+        /*set of possible subject choices initialized with
+        set of possible values for Enum "Subject"*/
         Subject[] setOfSubjects = Subject.values();
-
         subjects = new String[setOfSubjects.length + 1];
 
         //first spinner option set to "{Choose an element}"
         subjects[0] = "{Choose an element}";
 
-        //all other spinner options set using values of enum "Subjects"
         for(int i = 0; i < setOfSubjects.length; i++)
         {
             subjects[i + 1] = setOfSubjects[i].toString();
@@ -147,12 +148,47 @@ public class SubjectSearch extends AppCompatActivity
                 {
                     Toast.makeText(mContext, "Please provide more specific search parameters", Toast.LENGTH_LONG).show();
                 }
-                //if user provided chosen a specific subject
+                /*if user chosen a specific subject,
+                list of all books from that subject are extracted from
+                HashMap */
                 else
                 {
                     DataOrganizer data = new DataOrganizer(mContext);
                     HashMap<String, List<Book>> listOfBooks = data.getSubjectMap();
-                    List<Book> list = listOfBooks.get(subject_choice);
+                    List<Book> listOfOptions = listOfBooks.get(subject_choice);
+
+                    if(listOfOptions != null)
+                    {
+                        //make table of book options visible
+                        optionsTable.setVisibility(View.VISIBLE);
+                        //remove all rows added during previous search
+                        optionsTable.removeViews(1, optionsTable.getChildCount() - 1);
+
+
+                        for(int i = 0; i < listOfOptions.size(); i++)
+                        {
+                            //create new row for current book entry
+                            TableRow entryRow = new TableRow(mContext);
+                            TextView author_column = new TextView(mContext);
+                            TextView title_column = new TextView(mContext);
+
+                            //create string for author column containing ALL authors
+                            String[] authors = listOfOptions.get(i).returnAuthor();
+                            String authorColText = "";
+                            for(int x = 0; x < authors.length; x++)
+                            {
+                                authorColText = authors[x] + "\n";
+                            }
+
+                            //set the row's column text and add to table
+                            author_column.setText(authorColText);
+                            title_column.setText(listOfOptions.get(i).returnTitle());
+                            entryRow.addView(author_column);
+                            entryRow.addView(title_column);
+                            optionsTable.addView(entryRow);
+                        }
+                    }
+
                 }
             }
         });
