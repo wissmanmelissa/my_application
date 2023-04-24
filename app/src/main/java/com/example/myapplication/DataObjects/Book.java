@@ -2,15 +2,18 @@ package com.example.myapplication.DataObjects;
 
 public class Book
 {
+    //set of possible values for book format
     public enum Format
     {
         PAPERBACK, HARDBACK, AUDIO, DIGITAL
     }
 
+    //set of possible value for book subject
     public enum Subject
     {
-        BIOLOGY, FANTASY, PSYCHOLOGY, HISTORY
+        BIOLOGY, PSYCHOLOGY, HISTORY, FICTION
     }
+
 
     private String[] authorNames;
     private String title;
@@ -78,7 +81,6 @@ public class Book
         {
             if(i.name().equals(formatting))
             {
-                //Log.e("format", i.name() + " =/= " + formatting);
                 format = i;
                 break;
             }
