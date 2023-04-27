@@ -186,6 +186,12 @@ public class SubjectSearch extends AppCompatActivity
                             entryRow.addView(author_column);
                             entryRow.addView(title_column);
                             optionsTable.addView(entryRow);
+
+                            //set padding and size of columns to fit content
+                            author_column.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                            author_column.setPadding(0, 0, 20, 0);
+                            title_column.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                            title_column.setPadding(0, 0, 20, 0);
                         }
                     }
 
