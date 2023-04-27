@@ -153,7 +153,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                         String authorColText = "";
                         for(int x = 0; x < authors.length; x++)
                         {
-                            authorColText = authors[x] + "\n";
+                            authorColText = authorColText + authors[x] + "\n";
                         }
 
                         //set the row's column text and add to table
