@@ -42,25 +42,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Author: "
-        android:paddingRight="5dp"/>
+        android:paddingRight="20dp"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/author_input"
         android:text= "  "
-        android:paddingRight="5dp"/>
+        android:paddingRight="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title: "
-        android:paddingLeft="5dp"/>
+        android:paddingLeft="20dp"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title_input"
         android:text= "  "
-        android:paddingRight="5dp"/>
+        android:paddingRight="20dp"/>
 
     <Button
         android:layout_width="wrap_content"
