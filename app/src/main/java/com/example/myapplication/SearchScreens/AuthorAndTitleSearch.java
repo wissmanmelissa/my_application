@@ -1,10 +1,10 @@
 package com.example.myapplication.SearchScreens;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.DataObjects.*;
 import com.example.myapplication.R;
+import com.example.myapplication.SearchResults.Search_Results;
 import com.example.myapplication.WindowSizing;
 
 import java.util.ArrayList;
@@ -26,6 +27,29 @@ import java.util.List;
 
 public class AuthorAndTitleSearch extends AppCompatActivity
 {
+    /*returns button that will move user to search results page AND
+    pass relevant search parameters to search results page to generate
+    relevant results*/
+    public Button createButton(String title, String author)
+    {
+        Button bookOption = new Button(this);
+        bookOption.setText("Choose Book");
+
+        bookOption.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent startIntent = new Intent(AuthorAndTitleSearch.this, Search_Results.class);
+                startIntent.putExtra("title", title);
+                startIntent.putExtra("author", author);
+                startActivity(startIntent);
+            }
+        });
+
+        return bookOption;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -147,6 +171,8 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                         TableRow entryRow = new TableRow(mContext);
                         TextView author_column = new TextView(mContext);
                         TextView title_column = new TextView(mContext);
+                        //Button dynamically created for each book option
+                        Button optionButton = createButton(title_input.getText().toString().trim(), author_input.getText().toString().trim());
 
                         //create string for author column containing ALL authors
                         String[] authors = listOfOptions.get(i).returnAuthor();
@@ -156,11 +182,13 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                             authorColText = authorColText + authors[x] + "\n";
                         }
 
-                        //set the row's column text and add to table
+                        //set the row's column text and button and add to table
                         author_column.setText(authorColText);
                         title_column.setText(listOfOptions.get(i).returnTitle());
                         entryRow.addView(author_column);
                         entryRow.addView(title_column);
+                        optionButton.setText("Choose Book");
+                        entryRow.addView(optionButton);
                         optionsTable.addView(entryRow);
 
                         //set padding and size of columns to fit content

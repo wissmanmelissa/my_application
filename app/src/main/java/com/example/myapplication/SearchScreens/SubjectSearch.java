@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,9 +22,9 @@ import com.example.myapplication.DataObjects.Book;
 import com.example.myapplication.DataObjects.Book.Subject;
 import com.example.myapplication.DataObjects.DataOrganizer;
 import com.example.myapplication.R;
+import com.example.myapplication.SearchResults.Search_Results;
 import com.example.myapplication.WindowSizing;
 
-import java.sql.DatabaseMetaData;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +35,27 @@ public class SubjectSearch extends AppCompatActivity
     public void setSubjectChoice(String subject_chosen)
     {
         subject_choice = subject_chosen;
+    }
+
+    /*returns button that will move user to search results page AND
+    pass relevant search parameters to search results page to generate
+    relevant results*/
+    public Button createButton(String subject_choice)
+    {
+        Button bookOption = new Button(this);
+        bookOption.setText("Choose Book");
+
+        bookOption.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent startIntent = new Intent(SubjectSearch.this, Search_Results.class);
+                startIntent.putExtra("subject", subject_choice);
+                startActivity(startIntent);
+            }
+        });
+
+        return bookOption;
     }
 
     @Override
@@ -171,6 +192,8 @@ public class SubjectSearch extends AppCompatActivity
                             TableRow entryRow = new TableRow(mContext);
                             TextView author_column = new TextView(mContext);
                             TextView title_column = new TextView(mContext);
+                            //Button dynamically created for each book option
+                            Button optionButton = createButton(subject_choice);
 
                             //create string for author column containing ALL authors
                             String[] authors = listOfOptions.get(i).returnAuthor();
@@ -180,11 +203,13 @@ public class SubjectSearch extends AppCompatActivity
                                 authorColText = authorColText + authors[x] + "\n";
                             }
 
-                            //set the row's column text and add to table
+                            //set the row's column text and button and add to table
                             author_column.setText(authorColText);
                             title_column.setText(listOfOptions.get(i).returnTitle());
                             entryRow.addView(author_column);
                             entryRow.addView(title_column);
+                            optionButton.setText("Choose Book");
+                            entryRow.addView(optionButton);
                             optionsTable.addView(entryRow);
 
                             //set padding and size of columns to fit content
