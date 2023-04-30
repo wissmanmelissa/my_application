@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".SearchResults.Search_Results"
+            android:exported="false" />
+        <activity
             android:name=".SearchScreens.SubjectSearch"
             android:exported="false" />
         <activity
@@ -23,7 +26,7 @@
         </activity>
         <activity
             android:name=".SearchScreens.AuthorAndTitleSearch"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

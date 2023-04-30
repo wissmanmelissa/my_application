@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id = "@+id/target_screen">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#69B2FF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id = "@+id/back_button"
+                android:src="@mipmap/back_button"
+                android:layout_gravity="start">
+            </ImageView>
+
+            <TextView
+                android:id = "@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/table">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/labels">
+
+            <TextView
+                android:id = "@+id/author_label"
+                android:layout_height="wrap_content"
+                android:text="Authors"/>
+
+            <TextView
+                android:id = "@+id/title_label"
+                android:layout_height="wrap_content"
+                android:text="Title"/>
+
+            <TextView
+                android:id = "@+id/pub_date_label"
+                android:layout_height="wrap_content"
+                android:text="Date"/>
+
+            <TextView
+                android:id = "@+id/format_label"
+                android:layout_height="wrap_content"
+                android:text="Format"/>
+
+            <TextView
+                android:id = "@+id/subject_label"
+                android:layout_height="wrap_content"
+                android:text="Subject"/>
+
+            <TextView
+                android:id = "@+id/checkOut_label"
+                android:layout_height="wrap_content"
+                android:text="CheckedOut"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/book">
+
+            <TextView
+                android:id = "@+id/book_author"
+                android:layout_height="wrap_content"
+                android:text="Author"/>
+
+            <TextView
+                android:id = "@+id/book_title"
+                android:layout_height="wrap_content"
+                android:text="Title"/>
+
+            <TextView
+                android:id = "@+id/book_pub_date"
+                android:layout_height="wrap_content"
+                android:text="Date"/>
+
+            <TextView
+                android:id = "@+id/book_format"
+                android:layout_height="wrap_content"
+                android:text="Format"/>
+
+            <TextView
+                android:id = "@+id/book_subject"
+                android:layout_height="wrap_content"
+                android:text="Subject"/>
+
+            <CheckBox
+                android:id = "@+id/checkedOut"
+                android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
