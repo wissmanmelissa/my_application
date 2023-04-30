@@ -3,6 +3,7 @@ package com.example.myapplication.SearchScreens;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -172,7 +173,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                         TextView author_column = new TextView(mContext);
                         TextView title_column = new TextView(mContext);
                         //Button dynamically created for each book option
-                        Button optionButton = createButton(title_input.getText().toString().trim(), author_input.getText().toString().trim());
+                        Button optionButton = createButton(listOfOptions.get(i).returnTitle(), author_input.getText().toString().trim());
 
                         //create string for author column containing ALL authors
                         String[] authors = listOfOptions.get(i).returnAuthor();
