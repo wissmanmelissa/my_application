@@ -38,83 +38,75 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id = "@+id/author_label"
         android:layout_height="wrap_content"
-        android:id = "@+id/table">
+        android:layout_width="wrap_content"
+        android:text="Authors"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/labels">
+    <TextView
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"/>
 
-            <TextView
-                android:id = "@+id/author_label"
-                android:layout_height="wrap_content"
-                android:text="Authors"/>
+    <TextView
+        android:id = "@+id/title_label"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Title"/>
 
-            <TextView
-                android:id = "@+id/title_label"
-                android:layout_height="wrap_content"
-                android:text="Title"/>
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"/>
 
-            <TextView
-                android:id = "@+id/pub_date_label"
-                android:layout_height="wrap_content"
-                android:text="Date"/>
+    <TextView
+        android:id = "@+id/pub_date_label"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Date"/>
 
-            <TextView
-                android:id = "@+id/format_label"
-                android:layout_height="wrap_content"
-                android:text="Format"/>
+    <TextView
+        android:id="@+id/book_pub_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"/>
 
-            <TextView
-                android:id = "@+id/subject_label"
-                android:layout_height="wrap_content"
-                android:text="Subject"/>
+    <TextView
+        android:id = "@+id/format_label"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Format"/>
 
-            <TextView
-                android:id = "@+id/checkOut_label"
-                android:layout_height="wrap_content"
-                android:text="CheckedOut"/>
+    <TextView
+        android:id="@+id/book_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"/>
 
-        </TableRow>
+    <TextView
+        android:id = "@+id/subject_label"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Subject"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/book">
+    <TextView
+        android:id="@+id/book_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"/>
 
-            <TextView
-                android:id = "@+id/book_author"
-                android:layout_height="wrap_content"
-                android:text="Author"/>
+    <TextView
+        android:id = "@+id/checkOut_label"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="CheckedOut"/>
 
-            <TextView
-                android:id = "@+id/book_title"
-                android:layout_height="wrap_content"
-                android:text="Title"/>
+    <CheckBox
+        android:id = "@+id/checkedOut"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
 
-            <TextView
-                android:id = "@+id/book_pub_date"
-                android:layout_height="wrap_content"
-                android:text="Date"/>
-
-            <TextView
-                android:id = "@+id/book_format"
-                android:layout_height="wrap_content"
-                android:text="Format"/>
-
-            <TextView
-                android:id = "@+id/book_subject"
-                android:layout_height="wrap_content"
-                android:text="Subject"/>
-
-            <CheckBox
-                android:id = "@+id/checkedOut"
-                android:layout_height="wrap_content"/>
-
-        </TableRow>
-
-    </TableLayout>
 </LinearLayout>
