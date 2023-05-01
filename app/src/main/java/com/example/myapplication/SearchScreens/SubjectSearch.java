@@ -40,7 +40,7 @@ public class SubjectSearch extends AppCompatActivity
     /*returns button that will move user to search results page AND
     pass relevant search parameters to search results page to generate
     relevant results*/
-    public Button createButton(String subject_choice)
+    public Button createButton(String title)
     {
         Button bookOption = new Button(this);
         bookOption.setText("Choose Book");
@@ -50,7 +50,7 @@ public class SubjectSearch extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent startIntent = new Intent(SubjectSearch.this, Search_Results.class);
-                startIntent.putExtra("subject", subject_choice);
+                startIntent.putExtra("title", title);
                 startActivity(startIntent);
             }
         });
@@ -193,7 +193,7 @@ public class SubjectSearch extends AppCompatActivity
                             TextView author_column = new TextView(mContext);
                             TextView title_column = new TextView(mContext);
                             //Button dynamically created for each book option
-                            Button optionButton = createButton(subject_choice);
+                            Button optionButton = createButton(listOfOptions.get(i).returnTitle());
 
                             //create string for author column containing ALL authors
                             String[] authors = listOfOptions.get(i).returnAuthor();
