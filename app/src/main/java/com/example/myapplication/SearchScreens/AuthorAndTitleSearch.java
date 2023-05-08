@@ -185,7 +185,36 @@ public class AuthorAndTitleSearch extends AppCompatActivity
 
                         //set the row's column text and button and add to table
                         author_column.setText(authorColText);
-                        title_column.setText(listOfOptions.get(i).returnTitle());
+
+                        //String for title column
+                        String newTitle = "";
+
+                        //checks if title is too wide for column
+                        if(listOfOptions.get(i).returnTitle().length() > 15)
+                        {
+                            //Splits title into different words/by spaces between words
+                            String[] splitTitle = listOfOptions.get(i).returnTitle().split(" ");
+
+                                /*adds each word in the title one-by-one to the String for
+                                title column, and adds newline character for every 15
+                                characters (or as close as possible) to ensure title
+                                text isn't too wide for column*/
+                            int splitIndex = 15;
+                            for(int a = 0; a < splitTitle.length; a++)
+                            {
+                                if(newTitle.length() >= splitIndex)
+                                {
+                                    newTitle = newTitle + "\n" + splitTitle[a];
+                                    splitIndex += 16;
+                                }
+                                else
+                                {
+                                    newTitle = newTitle + " " + splitTitle[a];
+                                }
+                            }
+                        }
+                        title_column.setText(newTitle);
+
                         entryRow.addView(author_column);
                         entryRow.addView(title_column);
                         optionButton.setText("Choose Book");
