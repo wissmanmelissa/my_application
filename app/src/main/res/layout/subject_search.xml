@@ -110,14 +110,14 @@
             android:id = "@+id/labels">
 
             <TextView
-                android:id = "@+id/title_label"
-                android:layout_height="wrap_content"
-                android:text="Title"/>
-
-            <TextView
                 android:id = "@+id/author_label"
                 android:layout_height="wrap_content"
                 android:text="Author"/>
+
+            <TextView
+                android:id = "@+id/title_label"
+                android:layout_height="wrap_content"
+                android:text="Title"/>
 
             <TextView
                 android:id = "@+id/OptionLabel"
