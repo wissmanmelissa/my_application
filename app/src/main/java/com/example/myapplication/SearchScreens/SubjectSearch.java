@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -26,6 +28,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.SearchResults.Search_Results;
 import com.example.myapplication.WindowSizing;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,13 +42,15 @@ public class SubjectSearch extends AppCompatActivity
         subject_choice = subject_chosen;
     }
 
-    /*returns button that will move user to search results page AND
-    pass relevant search parameters to search results page to generate
+    /*returns TextView that can be clicked to move user to search results page
+    AND pass relevant search parameters to search results page to generate
     relevant results*/
-    public Button createButton(String title)
+    public TextView createLink(String title)
     {
-        Button bookOption = new Button(this);
+        TextView bookOption = new TextView(this);
         bookOption.setText("Choose Book");
+        bookOption.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        bookOption.setTextColor(Color.BLUE);
 
         bookOption.setOnClickListener(new View.OnClickListener()
         {
@@ -193,8 +199,6 @@ public class SubjectSearch extends AppCompatActivity
                             TableRow entryRow = new TableRow(mContext);
                             TextView author_column = new TextView(mContext);
                             TextView title_column = new TextView(mContext);
-                            //Button dynamically created for each book option
-                            Button optionButton = createButton(listOfOptions.get(i).returnTitle());
 
                             //create string for author column containing ALL authors
                             String[] authors = listOfOptions.get(i).returnAuthor();
@@ -243,15 +247,12 @@ public class SubjectSearch extends AppCompatActivity
 
                             entryRow.addView(author_column);
                             entryRow.addView(title_column);
-                            optionButton.setText("Choose Book");
-                            entryRow.addView(optionButton);
-                            optionsTable.addView(entryRow);
 
-                            //set padding and size of columns to fit content
-                            author_column.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                            author_column.setPadding(0, 0, 20, 0);
-                            title_column.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                            title_column.setPadding(0, 0, 20, 0);
+                            //Button dynamically created for each book option
+                            TextView optionButton = createLink(listOfOptions.get(i).returnTitle());
+                            entryRow.addView(optionButton);
+
+                            optionsTable.addView(entryRow);
                         }
                     }
 
