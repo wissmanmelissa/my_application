@@ -234,6 +234,11 @@ public class SubjectSearch extends AppCompatActivity
                                     }
                                 }
                             }
+                            else
+                            {
+                                newTitle = listOfOptions.get(i).returnTitle();
+                            }
+
                             title_column.setText(newTitle);
 
                             entryRow.addView(author_column);
