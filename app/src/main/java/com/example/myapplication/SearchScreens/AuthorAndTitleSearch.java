@@ -18,9 +18,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.DataObjects.*;
 import com.example.myapplication.R;
+import com.example.myapplication.SearchResults.BookRowAdapter;
 import com.example.myapplication.SearchResults.Search_Results;
 import com.example.myapplication.WindowSizing;
 
@@ -30,31 +33,6 @@ import java.util.List;
 
 public class AuthorAndTitleSearch extends AppCompatActivity
 {
-    /*returns TextView that can be clicked to move user to search results page
-    AND pass relevant search parameters to search results page to generate
-    relevant results*/
-    public TextView createButton(String title, String author)
-    {
-        TextView bookOption = new TextView(this);
-        bookOption.setText("Choose Book");
-        bookOption.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        bookOption.setTextColor(Color.BLUE);
-
-        bookOption.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent startIntent = new Intent(AuthorAndTitleSearch.this, Search_Results.class);
-                startIntent.putExtra("title", title);
-                startIntent.putExtra("author", author);
-                startActivity(startIntent);
-            }
-        });
-
-        return bookOption;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -87,21 +65,9 @@ public class AuthorAndTitleSearch extends AppCompatActivity
         TextView title = (TextView)findViewById(R.id.title);
         title.setTextSize(TypedValue.COMPLEX_UNIT_PX, widgetSize);
 
-        //table of book options and table column labels
-        LinearLayout optionsTable = (LinearLayout) findViewById(R.id.table);
-        TextView author_label = (TextView) findViewById(R.id.author_label);
-        TextView title_label = (TextView) findViewById(R.id.title_label);
-
         //set sizing for columns/table based on screen size
         int width = new WindowSizing().returnWindowSize();
         int columnSize = width/6;
-        int paddingSize = width/32;
-        optionsTable.setPadding(paddingSize, 0, 0, 0);
-        author_label.getLayoutParams().width = columnSize;
-        title_label.getLayoutParams().width = columnSize;
-
-        //sets table to invisible
-        optionsTable.setVisibility(View.INVISIBLE);
 
         /*set submit button to capture author and title input (if provided)
         and use them to generate and display a series of book options that
@@ -164,73 +130,13 @@ public class AuthorAndTitleSearch extends AppCompatActivity
 
                 if(listOfOptions != null)
                 {
-                    //make table of book options visible
-                    optionsTable.setVisibility(View.VISIBLE);
-                    //remove all rows added during previous search
-                    optionsTable.removeViews(1, optionsTable.getChildCount() - 1);
-
-
-                    for(int i = 0; i < listOfOptions.size(); i++)
-                    {
-                        //create new row for current book entry
-                        TableRow entryRow = new TableRow(mContext);
-                        TextView author_column = new TextView(mContext);
-                        TextView title_column = new TextView(mContext);
-
-                        //create string for author column containing ALL authors
-                        String[] authors = listOfOptions.get(i).returnAuthor();
-                        String authorColText = "";
-                        for(int x = 0; x < authors.length; x++)
-                        {
-                            authorColText = authorColText + authors[x] + "\n";
-                        }
-
-                        //set the row's column text and button and add to table
-                        author_column.setText(authorColText);
-
-                        //String for title column
-                        String newTitle = "";
-
-                        //checks if title is too wide for column
-                        if(listOfOptions.get(i).returnTitle().length() > 15)
-                        {
-                            //Splits title into different words/by spaces between words
-                            String[] splitTitle = listOfOptions.get(i).returnTitle().split(" ");
-
-                                /*adds each word in the title one-by-one to the String for
-                                title column, and adds newline character for every 15
-                                characters (or as close as possible) to ensure title
-                                text isn't too wide for column*/
-                            int splitIndex = 15;
-                            for(int a = 0; a < splitTitle.length; a++)
-                            {
-                                if(newTitle.length() >= splitIndex)
-                                {
-                                    newTitle = newTitle + "\n" + splitTitle[a];
-                                    splitIndex += 16;
-                                }
-                                else
-                                {
-                                    newTitle = newTitle + " " + splitTitle[a];
-                                }
-                            }
-                        }
-                        else
-                        {
-                            newTitle = listOfOptions.get(i).returnTitle();
-                        }
-
-                        title_column.setText(newTitle);
-
-                        entryRow.addView(author_column);
-                        entryRow.addView(title_column);
-
-                        //TextView dynamically created for each book option
-                        TextView optionButton = createButton(listOfOptions.get(i).returnTitle(), author_input.getText().toString().trim());
-                        entryRow.addView(optionButton);
-
-                        optionsTable.addView(entryRow);
-                    }
+                    /*Creates search results display using list of all Book objs that
+                    match user input and the width of screen*/
+                    RecyclerView entriesHolder = (RecyclerView)findViewById(R.id.entriesHolder);
+                    entriesHolder.setLayoutManager(new LinearLayoutManager(mContext));
+                    BookRowAdapter adapter = new BookRowAdapter(mContext, listOfOptions, width);
+                    entriesHolder.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
                 //show error message if no valid search parameters
                 else
