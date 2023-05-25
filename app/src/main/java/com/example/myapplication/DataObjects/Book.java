@@ -40,7 +40,7 @@ public class Book
         }
     }
 
-    public String[] returnAuthor()
+    public String[] returnAuthors()
     {
         return authorNames;
     }
@@ -63,16 +63,6 @@ public class Book
     public String returnTitle()
     {
         return title;
-    }
-
-    public void setCheckedOut()
-    {
-        checkedOut = !checkedOut;
-    }
-
-    public boolean returnCheckOut()
-    {
-        return checkedOut;
     }
 
     private void setFormat(String formatting)

@@ -25,6 +25,7 @@ public class BookEntry extends RecyclerView.ViewHolder
     {
         super(container);
 
+        //all column sizes set to 1/3 width of the screen
         int columnSize = width/3;
 
         authorNames = (TextView) itemView.findViewById(R.id.book_author);
@@ -34,6 +35,7 @@ public class BookEntry extends RecyclerView.ViewHolder
         title.getLayoutParams().width = columnSize;
 
         submitButton = (TextView)itemView.findViewById(R.id.submit_book);
+        submitButton.getLayoutParams().width = columnSize;
 
         mContext = context;
     }
@@ -62,7 +64,7 @@ public class BookEntry extends RecyclerView.ViewHolder
     public void bind(Book entry)
     {
         //create string for author column containing ALL authors
-        String[] authors = entry.returnAuthor();
+        String[] authors = entry.returnAuthors();
         String authorColText = "";
         for(int x = 0; x < authors.length; x++)
         {

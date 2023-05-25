@@ -83,7 +83,7 @@ public class Search_Results extends AppCompatActivity
         /*Create text for "author" column using list of authors
         extracted from chosen Book object*/
         TextView book_author = (TextView) findViewById(R.id.book_author);
-        String[] authors = choice.returnAuthor();
+        String[] authors = choice.returnAuthors();
         String author_text = "";
         for(int i = 0; i < authors.length; i++)
         {
@@ -101,17 +101,6 @@ public class Search_Results extends AppCompatActivity
         book_format.setText(choice.returnFormat());
         TextView book_subject = (TextView) findViewById(R.id.book_subject);
         book_subject.setText(choice.returnSubject());
-
-        //set "Checked Out" column using data from chosen Book Object
-        CheckBox checkedOut = (CheckBox) findViewById(R.id.checkedOut);
-        if(choice.returnCheckOut())
-        {
-            checkedOut.setChecked(true);
-        }
-        else
-        {
-            checkedOut.setChecked(false);
-        }
 
         //set back button to return to previous screen when presses
         back_button.setOnClickListener(new View.OnClickListener()

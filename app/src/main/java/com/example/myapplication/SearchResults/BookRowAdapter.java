@@ -36,14 +36,14 @@ public class BookRowAdapter extends RecyclerView.Adapter<BookEntry>
         return new BookEntry(layout, parent, width, mContext);
     }
 
-    //binds each row/EntryHolder to its corresponding book object in the "listOfBooks"
+    //each corresponding obj in "listOfBooks" will be bound to BookHolder
     @Override
     public void onBindViewHolder(BookEntry holder, int position)
     {
         holder.bind(listOfBooks.get(position));
     }
 
-    //gets number of rows needed based on size of "listOfGammas" list
+    //number of rows determined by number of books in list
     @Override
     public int getItemCount()
     {

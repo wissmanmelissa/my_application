@@ -29,7 +29,7 @@ import java.util.List;
 
 public class SubjectSearch extends AppCompatActivity
 {
-    //chose chosen by user
+    //subject chosen by user
     String subject_choice;
     public void setSubjectChoice(String subject_chosen)
     {
@@ -39,18 +39,16 @@ public class SubjectSearch extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        //generate screen display using "target_main" XML file
+        //screen display will be generated using "subject_search" XML file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subject_search);
 
         //Activity's Context
         Context mContext = this;
 
-        //sets the columns' size to 1/6 the size of screen
         //sets table's padding to 1/32 the size of screen
         WindowSizing getWindowSize = new WindowSizing();
         int width = getWindowSize.returnWindowSize();
-        int columnSize = width/6;
 
         //submission button
         Button submission = (Button) findViewById(R.id.submission);

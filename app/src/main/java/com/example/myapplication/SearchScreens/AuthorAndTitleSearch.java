@@ -67,7 +67,6 @@ public class AuthorAndTitleSearch extends AppCompatActivity
 
         //set sizing for columns/table based on screen size
         int width = new WindowSizing().returnWindowSize();
-        int columnSize = width/6;
 
         /*set submit button to capture author and title input (if provided)
         and use them to generate and display a series of book options that
@@ -96,8 +95,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                         if(!title_input.getText().toString().trim().equals(""))
                         {
                             /*add all books to "listOfOptions" that match
-                            user search parameters
-                             */
+                            user search parameters*/
                             for(int x = 0; x < listOfBooks.size(); x++)
                             {
                                 if(listOfBooks.get(x).returnTitle().equals(title_input.getText().toString().trim()))

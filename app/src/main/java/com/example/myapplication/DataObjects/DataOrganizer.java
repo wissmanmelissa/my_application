@@ -43,7 +43,7 @@ public class DataOrganizer
         //Initializes list of book if list is currently null
         if(listOfBooks == null)
         {
-            //Create JSONArray using JSON file
+            //Create JSONArray using "books.json" file
             BufferedReader reader = null;
             String currentLine;
             JSONArray jsonArray = null;
@@ -117,15 +117,15 @@ public class DataOrganizer
             {
                 /*transverse list of authors for each book and map author names
                 to ALL books associated with author*/
-                for(int x = 0; x < listOfBooks[i].returnAuthor().length; x++)
+                for(int x = 0; x < listOfBooks[i].returnAuthors().length; x++)
                 {
                     /*if author name already mapped to one or more books,
                     simply add new book to already existing list*/
-                    if(bookAuthorMap.containsKey(listOfBooks[i].returnAuthor()[x]))
+                    if(bookAuthorMap.containsKey(listOfBooks[i].returnAuthors()[x]))
                     {
-                        List<Book> currentList = bookAuthorMap.get(listOfBooks[i].returnAuthor()[x]);
+                        List<Book> currentList = bookAuthorMap.get(listOfBooks[i].returnAuthors()[x]);
                         currentList.add(listOfBooks[i]);
-                        bookAuthorMap.replace(listOfBooks[i].returnAuthor()[x], currentList);
+                        bookAuthorMap.replace(listOfBooks[i].returnAuthors()[x], currentList);
                     }
                     /*if author name ISN'T mapped to ANY books,
                     create new list of books and map to author name*/
@@ -133,7 +133,7 @@ public class DataOrganizer
                     {
                         List<Book> currentList = new ArrayList<>();
                         currentList.add(listOfBooks[i]);
-                        bookAuthorMap.put(listOfBooks[i].returnAuthor()[x], currentList);
+                        bookAuthorMap.put(listOfBooks[i].returnAuthors()[x], currentList);
                     }
                 }
 
