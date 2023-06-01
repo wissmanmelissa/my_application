@@ -46,7 +46,7 @@ public class Search_Results extends AppCompatActivity
         }
 
         DataOrganizer data = new DataOrganizer(mContext);
-        Book[] listOfBooks;
+        List<Book> listOfBooks;
         Book choice = null;
 
         /*If author search parameter given, extract hashMap
@@ -54,15 +54,14 @@ public class Search_Results extends AppCompatActivity
         if(author != null)
         {
             HashMap<String, List<Book>> authorBooks = data.getAuthorMap();
-            List<Book> bookList = authorBooks.get(author);
-            listOfBooks = bookList.toArray(new Book[bookList.size()]);
+            listOfBooks = authorBooks.get(author);;
 
             /*find book matching chosen book title*/
-            for (int x = 0; x < listOfBooks.length; x++)
+            for (int x = 0; x < listOfBooks.size(); x++)
             {
-                if (listOfBooks[x].returnTitle().equals(title))
+                if (listOfBooks.get(x).returnTitle().equals(title))
                 {
-                    choice = listOfBooks[x];
+                    choice = listOfBooks.get(x);
                 }
             }
         }
@@ -71,11 +70,11 @@ public class Search_Results extends AppCompatActivity
         else
         {
             listOfBooks = data.getBooks();
-            for(int x = 0; x < listOfBooks.length; x++)
+            for(int x = 0; x < listOfBooks.size(); x++)
             {
-                if(listOfBooks[x].returnTitle().equals(title))
+                if(listOfBooks.get(x).returnTitle().equals(title))
                 {
-                    choice = listOfBooks[x];
+                    choice = listOfBooks.get(x);
                 }
             }
         }

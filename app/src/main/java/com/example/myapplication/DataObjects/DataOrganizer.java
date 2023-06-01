@@ -3,6 +3,9 @@ package com.example.myapplication.DataObjects;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.example.myapplication.DataObjects.Book;
 
 import org.json.JSONArray;
@@ -13,14 +16,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+
 import com.example.myapplication.DataObjects.Book;
 
 public class DataOrganizer
 {
     //list of ALL books available
-    Book[] listOfBooks;
+    List<Book> listOfBooks;
 
     //Map that maps author name to list of associated books
     HashMap<String, List<Book>> bookAuthorMap;
@@ -38,7 +46,7 @@ public class DataOrganizer
     }
 
     //Creates and returns list of ALL books available using the "books" file
-    public Book[] getBooks()
+    public List<Book> getBooks()
     {
         //Initializes list of book if list is currently null
         if(listOfBooks == null)
@@ -57,7 +65,7 @@ public class DataOrganizer
                 /*Contents of "jsonArray" copied to "listOfBooks"*/
                 if(jsonArray != null)
                 {
-                    listOfBooks = new Book[jsonArray.length()];
+                    listOfBooks = new ArrayList<>();
 
                     for(int x = 0; x < jsonArray.length(); x++)
                     {
@@ -73,7 +81,7 @@ public class DataOrganizer
                         }
                         currentBook.setAuthors(authors);
 
-                        listOfBooks[x] = currentBook;
+                        listOfBooks.add(currentBook);
                     }
                 }
             }
@@ -92,6 +100,13 @@ public class DataOrganizer
                     Log.e("File Closure Failure", exception.toString());
                 }
             }
+        }
+
+        Collections.sort(listOfBooks);
+
+        for(int x = 0; x < listOfBooks.size(); x++)
+        {
+            Log.e("title", listOfBooks.get(x).returnTitle());
         }
 
         //returns list of ALL books
@@ -113,27 +128,27 @@ public class DataOrganizer
             }
 
 
-            for(int i = 0; i < listOfBooks.length; i++)
+            for(int i = 0; i < listOfBooks.size(); i++)
             {
                 /*transverse list of authors for each book and map author names
                 to ALL books associated with author*/
-                for(int x = 0; x < listOfBooks[i].returnAuthors().length; x++)
+                for(int x = 0; x < listOfBooks.get(i).returnAuthors().length; x++)
                 {
                     /*if author name already mapped to one or more books,
                     simply add new book to already existing list*/
-                    if(bookAuthorMap.containsKey(listOfBooks[i].returnAuthors()[x]))
+                    if(bookAuthorMap.containsKey(listOfBooks.get(i).returnAuthors()[x]))
                     {
-                        List<Book> currentList = bookAuthorMap.get(listOfBooks[i].returnAuthors()[x]);
-                        currentList.add(listOfBooks[i]);
-                        bookAuthorMap.replace(listOfBooks[i].returnAuthors()[x], currentList);
+                        List<Book> currentList = bookAuthorMap.get(listOfBooks.get(i).returnAuthors()[x]);
+                        currentList.add(listOfBooks.get(i));
+                        bookAuthorMap.replace(listOfBooks.get(i).returnAuthors()[x], currentList);
                     }
                     /*if author name ISN'T mapped to ANY books,
                     create new list of books and map to author name*/
                     else
                     {
                         List<Book> currentList = new ArrayList<>();
-                        currentList.add(listOfBooks[i]);
-                        bookAuthorMap.put(listOfBooks[i].returnAuthors()[x], currentList);
+                        currentList.add(listOfBooks.get(i));
+                        bookAuthorMap.put(listOfBooks.get(i).returnAuthors()[x], currentList);
                     }
                 }
 
@@ -158,23 +173,23 @@ public class DataOrganizer
             }
 
 
-            for(int i = 0; i < listOfBooks.length; i++)
+            for(int i = 0; i < listOfBooks.size(); i++)
             {
                     /*if subject already mapped to one or more books,
                     simply add new book to already existing list*/
-                    if(bookSubjectMap.containsKey(listOfBooks[i].returnSubject()))
+                    if(bookSubjectMap.containsKey(listOfBooks.get(i).returnSubject()))
                     {
-                        List<Book> currentList = bookSubjectMap.get(listOfBooks[i].returnSubject());
-                        currentList.add(listOfBooks[i]);
-                        bookSubjectMap.replace(listOfBooks[i].returnSubject(), currentList);
+                        List<Book> currentList = bookSubjectMap.get(listOfBooks.get(i).returnSubject());
+                        currentList.add(listOfBooks.get(i));
+                        bookSubjectMap.replace(listOfBooks.get(i).returnSubject(), currentList);
                     }
                     /*if subject ISN'T mapped to ANY books,
                     create new list of books and map to subject*/
                     else
                     {
                         List<Book> currentList = new ArrayList<>();
-                        currentList.add(listOfBooks[i]);
-                        bookSubjectMap.put(listOfBooks[i].returnSubject(), currentList);
+                        currentList.add(listOfBooks.get(i));
+                        bookSubjectMap.put(listOfBooks.get(i).returnSubject(), currentList);
                     }
 
             }

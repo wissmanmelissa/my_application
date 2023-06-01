@@ -116,12 +116,12 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                 {
                     /*add all books to "listOfOptions" that match user
                     search parameters*/
-                    Book[] listOfBooks = data.getBooks();
-                    for(int i = 0; i < listOfBooks.length; i++)
+                    List<Book> listOfBooks = data.getBooks();
+                    for(int i = 0; i < listOfBooks.size(); i++)
                     {
-                        if(listOfBooks[i].returnTitle().equals(title_input.getText().toString().trim()))
+                        if(listOfBooks.get(i).returnTitle().equals(title_input.getText().toString().trim()))
                         {
-                            listOfOptions.add(listOfBooks[i]);
+                            listOfOptions.add(listOfBooks.get(i));
                         }
                     }
                 }
