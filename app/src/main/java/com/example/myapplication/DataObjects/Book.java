@@ -1,7 +1,13 @@
 package com.example.myapplication.DataObjects;
 
-public class Book
+public class Book implements Comparable<Book>
 {
+    @Override
+    public int compareTo(Book otherBook)
+    {
+        return this.returnTitle().compareTo(otherBook.returnTitle());
+    }
+
     //set of possible values for book format
     public enum Format
     {
