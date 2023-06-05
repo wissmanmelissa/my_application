@@ -28,12 +28,12 @@ import com.example.myapplication.DataObjects.Book;
 public class DataOrganizer
 {
     //list of ALL books available
-    List<Book> listOfBooks;
+    static List<Book> listOfBooks;
 
     //Map that maps author name to list of associated books
-    HashMap<String, List<Book>> bookAuthorMap;
+    static HashMap<String, List<Book>> bookAuthorMap;
     //Map that maps each subject to list of associated books
-    HashMap<String, List<Book>> bookSubjectMap;
+    static HashMap<String, List<Book>> bookSubjectMap;
 
 
     Context mContext;
@@ -100,13 +100,8 @@ public class DataOrganizer
                     Log.e("File Closure Failure", exception.toString());
                 }
             }
-        }
 
-        Collections.sort(listOfBooks);
-
-        for(int x = 0; x < listOfBooks.size(); x++)
-        {
-            Log.e("title", listOfBooks.get(x).returnTitle());
+            Collections.sort(listOfBooks);
         }
 
         //returns list of ALL books
