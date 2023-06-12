@@ -20,7 +20,7 @@ public class MainScreen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
 
-        //generate screen display using "activity_main" XML file
+        //generate screen display using "main_screen" XML file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
@@ -43,12 +43,12 @@ public class MainScreen extends AppCompatActivity
 
         /*buttons to move user to author and/or title search OR
         subject pagE*/
-        Button option1 = (Button)findViewById(R.id.option1);
-        Button option2 = (Button)findViewById(R.id.option2);
+        Button authorAndTitle = (Button)findViewById(R.id.authorAndTitle);
+        Button subjects = (Button)findViewById(R.id.subjects);
 
         /*set listener so button will move user to author and title search page
         when clicked*/
-        option1.setOnClickListener(new View.OnClickListener()
+        authorAndTitle.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -60,7 +60,7 @@ public class MainScreen extends AppCompatActivity
 
        /*set listener so button will move user to subject search page
         when clicked*/
-        option2.setOnClickListener(new View.OnClickListener()
+        subjects.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

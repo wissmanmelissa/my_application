@@ -45,14 +45,14 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
         <Button
-            android:id="@+id/option1"
+            android:id="@+id/authorAndTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="Search by author and \n book title"></Button>
 
         <Button
-            android:id="@+id/option2"
+            android:id="@+id/subjects"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Search by subject"></Button>
