@@ -59,7 +59,7 @@ public class StartScreen extends AppCompatActivity
                 }
                 catch (Exception e)
                 {
-                    Log.e("fail", e.toString());
+                    e.printStackTrace();
                 }
                 finally
                 {

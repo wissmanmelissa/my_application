@@ -87,7 +87,7 @@ public class DataOrganizer
             }
             catch(JSONException | IOException exception)
             {
-                Log.e("ADDING_ENTRIES", exception.toString());
+                exception.printStackTrace();
             }
             finally
             {
