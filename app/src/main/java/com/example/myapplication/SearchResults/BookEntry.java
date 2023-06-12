@@ -43,7 +43,7 @@ public class BookEntry extends RecyclerView.ViewHolder
     /*returns TextView that can be clicked to move user to search results page
     AND pass relevant search parameters to search results page to generate
     relevant results*/
-    public void createLink(String title, TextView submit_button)
+    public void createLink(Book entry, TextView submit_button)
     {
         submit_button.setText("Choose Book");
         submit_button.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -54,7 +54,7 @@ public class BookEntry extends RecyclerView.ViewHolder
             public void onClick(View v)
             {
                 Intent startIntent = new Intent(mContext, Search_Results.class);
-                startIntent.putExtra("title", title);
+                startIntent.putExtra("book", entry);
                 mContext.startActivity(startIntent);
             }
         });
@@ -109,6 +109,6 @@ public class BookEntry extends RecyclerView.ViewHolder
         title.setText(newTitle);
 
         //Button dynamically created for each book option
-        createLink(entry.returnTitle(), submitButton);
+        createLink(entry, submitButton);
     }
 }

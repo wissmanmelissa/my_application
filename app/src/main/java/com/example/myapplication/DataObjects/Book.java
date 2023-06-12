@@ -1,6 +1,8 @@
 package com.example.myapplication.DataObjects;
 
-public class Book implements Comparable<Book>
+import java.io.Serializable;
+
+public class Book implements Comparable<Book>, Serializable
 {
     @Override
     public int compareTo(Book otherBook)
