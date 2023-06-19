@@ -30,12 +30,22 @@ public class Book implements Comparable<Book>, Serializable
     private Subject subject;
     private boolean checkedOut = false;
 
-    public Book(String title, String date, String format, String subject)
+    public static Book createBook(String title, String date, String format, String subject, String[] names)
     {
-        setDate(date);
-        setFormat(format);
-        setSubject(subject);
-        setTitle(title);
+        Book newBook = new Book();
+        boolean properFormat = newBook.setFormat(format);
+        boolean properSubject = newBook.setSubject(subject);
+
+        if(!properFormat || !properSubject)
+        {
+            return null;
+        }
+
+        newBook.setAuthors(names);
+        newBook.setDate(date);
+        newBook.setTitle(title);
+
+        return newBook;
     }
 
     public void setAuthors(String[] names)
@@ -73,16 +83,18 @@ public class Book implements Comparable<Book>, Serializable
         return title;
     }
 
-    private void setFormat(String formatting)
+    private boolean setFormat(String formatting)
     {
         for(Format i : Format.values())
         {
             if(i.name().equals(formatting))
             {
                 format = i;
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
     public String returnFormat()
@@ -95,15 +107,18 @@ public class Book implements Comparable<Book>, Serializable
         return null;
     }
 
-    private void setSubject(String topic)
+    private boolean setSubject(String topic)
     {
         for(Subject i : Subject.values())
         {
             if(i.name().equals(topic))
             {
                 subject = i;
+                return true;
             }
         }
+
+        return false;
     }
 
     public String returnSubject()

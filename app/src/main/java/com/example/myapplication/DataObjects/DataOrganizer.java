@@ -70,7 +70,6 @@ public class DataOrganizer
                     for(int x = 0; x < jsonArray.length(); x++)
                     {
                         JSONObject currentObj = jsonArray.getJSONObject(x);
-                        Book currentBook = new Book(currentObj.getString("name"), currentObj.getString("date"), currentObj.getString("format"), currentObj.getString("subject"));
                         /*inner array of author names used to initialize list of author names
                         contained in current "Book" object*/
                         JSONArray authorArray = currentObj.getJSONArray("authors");
@@ -79,7 +78,7 @@ public class DataOrganizer
                         {
                             authors[b] = authorArray.getString(b);
                         }
-                        currentBook.setAuthors(authors);
+                        Book currentBook = Book.createBook(currentObj.getString("name"), currentObj.getString("date"), currentObj.getString("format"), currentObj.getString("subject"), authors);
 
                         listOfBooks.add(currentBook);
                     }
