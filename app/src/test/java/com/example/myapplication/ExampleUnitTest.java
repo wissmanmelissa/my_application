@@ -14,7 +14,6 @@ import com.example.myapplication.DataObjects.Book;
 public class ExampleUnitTest
 {
     Book exampleBook1 = Book.createBook("Gone With the Wind", "1936-06-30", "PAPERBACK", "FICTION", new String[]{"Margret Mitchell"});
-    Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961-09-30", "VIDEO", "SCIENCE FICTION", new String[]{"Norton Juster"});
 
     @Test
     public void checkBookTitle()
@@ -41,8 +40,16 @@ public class ExampleUnitTest
     }
 
     @Test
-    public void invalidBook()
+    public void invalidFormat()
     {
+        Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961-09-30", "VIDEO", "FICTION", new String[]{"Norton Juster"});
+        assertNull(exampleBook2);
+    }
+
+    @Test
+    public void invalidSubject()
+    {
+        Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961-09-30", "AUDIO", "SCIENCE FICTION", new String[]{"Norton Juster"});
         assertNull(exampleBook2);
     }
 }
