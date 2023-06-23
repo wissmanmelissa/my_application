@@ -1,5 +1,7 @@
 package com.example.myapplication.DataObjects;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 public class Book implements Comparable<Book>, Serializable
@@ -28,7 +30,6 @@ public class Book implements Comparable<Book>, Serializable
     private String publishDate;
     private Format format;
     private Subject subject;
-    private boolean checkedOut = false;
 
     public static Book createBook(String title, String date, String format, String subject, String[] names)
     {
@@ -85,9 +86,11 @@ public class Book implements Comparable<Book>, Serializable
 
     private boolean setFormat(String formatting)
     {
+        String formattingType = formatting.toUpperCase();
+
         for(Format i : Format.values())
         {
-            if(i.name().equals(formatting))
+            if(i.name().equals(formattingType))
             {
                 format = i;
                 return true;
@@ -109,9 +112,11 @@ public class Book implements Comparable<Book>, Serializable
 
     private boolean setSubject(String topic)
     {
+        String subjectType = topic.toUpperCase();
+
         for(Subject i : Subject.values())
         {
-            if(i.name().equals(topic))
+            if(i.name().equals(subjectType))
             {
                 subject = i;
                 return true;
