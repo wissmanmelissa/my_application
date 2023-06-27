@@ -52,4 +52,11 @@ public class ExampleUnitTest
         Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961-09-30", "AUDIO", "SCIENCE FICTION", new String[]{"Norton Juster"});
         assertNull(exampleBook2);
     }
+
+    @Test
+    public void invalidAuthor()
+    {
+        Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961-09-30", "AUDIO", "FICTION", new String[]{"Norton Juster", "Frank"});
+        assertNull(exampleBook2);
+    }
 }
