@@ -13,6 +13,7 @@ import com.example.myapplication.DataObjects.DataOrganizer;
 import com.example.myapplication.R;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,7 +57,12 @@ public class Search_Results extends AppCompatActivity
         TextView book_title = (TextView) findViewById(R.id.book_title);
         book_title.setText(entry.returnTitle());
         TextView book_pub_date = (TextView) findViewById(R.id.book_pub_date);
-        book_pub_date.setText(entry.returnDate());
+
+        LocalDate bookDate = entry.returnDate();
+        String bookDateText = bookDate.getYear() + "-" + bookDate.getMonthValue() + "-" + bookDate.getDayOfMonth();
+
+
+        book_pub_date.setText(bookDateText);
         TextView book_format = (TextView) findViewById(R.id.book_format);
         book_format.setText(entry.returnFormat());
         TextView book_subject = (TextView) findViewById(R.id.book_subject);

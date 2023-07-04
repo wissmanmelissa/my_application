@@ -1,6 +1,8 @@
 package com.example.myapplication.DataObjects;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Book implements Comparable<Book>, Serializable
 {
@@ -25,24 +27,24 @@ public class Book implements Comparable<Book>, Serializable
 
     private String[] authorNames;
     private String title;
-    private String publishDate;
+    private LocalDate publishDate;
     private Format format;
     private Subject subject;
 
-    public static Book createBook(String title, String date, String format, String subject, String[] names)
+    public static Book createBook(String title, String pubYear, String pubMonth, String pubDay, String format, String subject, String[] names)
     {
         Book newBook = new Book();
         boolean properFormat = newBook.setFormat(format);
         boolean properSubject = newBook.setSubject(subject);
         boolean properAuthors = newBook.setAuthors(names);
+        boolean properDate = newBook.setDate(pubYear, pubMonth, pubDay);
 
-        if(!properFormat || !properSubject || !properAuthors)
+        if(!properFormat || !properSubject || !properAuthors || !properDate)
         {
             return null;
         }
 
         newBook.setAuthors(names);
-        newBook.setDate(date);
         newBook.setTitle(title);
 
         return newBook;
@@ -77,12 +79,32 @@ public class Book implements Comparable<Book>, Serializable
         return authorNames;
     }
 
-    private void setDate(String date)
+    private boolean setDate(String year, String month, String day)
     {
-        publishDate = date;
+        try
+        {
+            int pubYear = Integer.parseInt(year);
+            int pubMonth = Integer.parseInt(month);
+            int pubDay = Integer.parseInt(day);
+
+            LocalDate currentDate = LocalDate.now();
+            LocalDate bookDate = LocalDate.of(pubYear, pubMonth, pubDay);
+
+            if(currentDate.compareTo(bookDate) > 0)
+            {
+                publishDate = bookDate;
+                return true;
+            }
+        }
+        catch(NumberFormatException | DateTimeParseException e)
+        {
+            return false;
+        }
+
+        return false;
     }
 
-    public String returnDate()
+    public LocalDate returnDate()
     {
         return publishDate;
     }

@@ -78,7 +78,10 @@ public class DataOrganizer
                         {
                             authors[b] = authorArray.getString(b);
                         }
-                        Book currentBook = Book.createBook(currentObj.getString("name"), currentObj.getString("date"), currentObj.getString("format"), currentObj.getString("subject"), authors);
+
+                        String[] dateParts = currentObj.getString("date").split("-");
+
+                        Book currentBook = Book.createBook(currentObj.getString("name"), dateParts[0], dateParts[1], dateParts[2], currentObj.getString("format"), currentObj.getString("subject"), authors);
 
                         listOfBooks.add(currentBook);
                     }
