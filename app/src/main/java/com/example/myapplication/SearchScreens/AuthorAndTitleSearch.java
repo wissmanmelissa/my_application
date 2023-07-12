@@ -1,18 +1,12 @@
 package com.example.myapplication.SearchScreens;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.DataObjects.*;
 import com.example.myapplication.R;
 import com.example.myapplication.SearchResults.BookRowAdapter;
-import com.example.myapplication.SearchResults.Search_Results;
 import com.example.myapplication.WindowSizing;
 
 import java.util.ArrayList;

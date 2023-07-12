@@ -33,7 +33,7 @@ public class BookRowAdapter extends RecyclerView.Adapter<BookEntry>
         LayoutInflater inflater = LayoutInflater.from(mContext);
         ViewGroup layout = (ViewGroup)inflater.inflate(R.layout.book_entry, null);
 
-        return new BookEntry(layout, parent, width, mContext);
+        return new BookEntry(layout, mContext);
     }
 
     //each corresponding obj in "listOfBooks" will be bound to BookHolder

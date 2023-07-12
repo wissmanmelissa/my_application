@@ -25,31 +25,36 @@ public class Book implements Comparable<Book>, Serializable
     }
 
 
+    //Book data variables
     private String[] authorNames;
     private String title;
     private LocalDate publishDate;
     private Format format;
     private Subject subject;
 
+    //returns new book object if all book data is valid/accurate
     public static Book createBook(String title, String pubYear, String pubMonth, String pubDay, String format, String subject, String[] names)
     {
         Book newBook = new Book();
+
+        //set book data and return true if valid book data is returned
         boolean properFormat = newBook.setFormat(format);
         boolean properSubject = newBook.setSubject(subject);
         boolean properAuthors = newBook.setAuthors(names);
         boolean properDate = newBook.setDate(pubYear, pubMonth, pubDay);
 
+        //"null" Book object returned if any book data is invalid
         if(!properFormat || !properSubject || !properAuthors || !properDate)
         {
             return null;
         }
 
-        newBook.setAuthors(names);
         newBook.setTitle(title);
 
         return newBook;
     }
 
+    //sets list of book authors and returns true if valid data passed to function
     private boolean setAuthors(String[] names)
     {
         if(names.length == 0)
@@ -63,6 +68,8 @@ public class Book implements Comparable<Book>, Serializable
         {
             String[] currentAuthor = names[i].split(" ");
 
+            //returns false if current author name doesn't
+            //contain at least a first and last name
             if(currentAuthor.length < 2)
             {
                 return false;
@@ -79,6 +86,8 @@ public class Book implements Comparable<Book>, Serializable
         return authorNames;
     }
 
+    //sets date variable if valid month, day and year value is passed
+    //to function, otherwise false is returned
     private boolean setDate(String year, String month, String day)
     {
         try
@@ -119,6 +128,7 @@ public class Book implements Comparable<Book>, Serializable
         return title;
     }
 
+    //sets format and returns true if valid format passed to function
     private boolean setFormat(String formatting)
     {
         String formattingType = formatting.toUpperCase();
@@ -145,6 +155,7 @@ public class Book implements Comparable<Book>, Serializable
         return null;
     }
 
+    //sets subject and returns true if valid subject passed to function
     private boolean setSubject(String topic)
     {
         String subjectType = topic.toUpperCase();

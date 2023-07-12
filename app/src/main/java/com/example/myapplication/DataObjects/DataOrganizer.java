@@ -1,12 +1,6 @@
 package com.example.myapplication.DataObjects;
 
 import android.content.Context;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.example.myapplication.DataObjects.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,14 +10,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
-import com.example.myapplication.DataObjects.Book;
 
 public class DataOrganizer
 {
@@ -79,11 +68,17 @@ public class DataOrganizer
                             authors[b] = authorArray.getString(b);
                         }
 
+                        //Date split into month, year, and day String values
                         String[] dateParts = currentObj.getString("date").split("-");
 
                         Book currentBook = Book.createBook(currentObj.getString("name"), dateParts[0], dateParts[1], dateParts[2], currentObj.getString("format"), currentObj.getString("subject"), authors);
 
-                        listOfBooks.add(currentBook);
+                        //current book added to list of books if valid
+                        //book data was passed/Book object was returned by "createBook"
+                        if(currentBook != null)
+                        {
+                            listOfBooks.add(currentBook);
+                        }
                     }
                 }
             }
@@ -99,10 +94,11 @@ public class DataOrganizer
                 }
                 catch(IOException exception)
                 {
-                    Log.e("File Closure Failure", exception.toString());
+                    exception.printStackTrace();
                 }
             }
 
+            //list of books sorted based on title
             Collections.sort(listOfBooks);
         }
 

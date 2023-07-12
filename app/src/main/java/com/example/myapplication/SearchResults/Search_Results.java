@@ -1,27 +1,18 @@
 package com.example.myapplication.SearchResults;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.myapplication.DataObjects.Book;
-import com.example.myapplication.DataObjects.DataOrganizer;
 import com.example.myapplication.R;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
 
 public class Search_Results extends AppCompatActivity
 {
-
-    //Context of the current Activity
-   Context mContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

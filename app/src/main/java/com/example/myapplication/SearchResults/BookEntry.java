@@ -5,12 +5,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.DataObjects.Book;
 import com.example.myapplication.R;
-import com.example.myapplication.SearchScreens.SubjectSearch;
 
 public class BookEntry extends RecyclerView.ViewHolder
 {
@@ -21,21 +19,15 @@ public class BookEntry extends RecyclerView.ViewHolder
     private Context mContext;
 
     //initializes row/EntryHolder Obj
-    public BookEntry(ViewGroup container, ViewGroup parent, int width, Context context)
+    public BookEntry(ViewGroup container, Context context)
     {
         super(container);
 
-        //all column sizes set to 1/3 width of the screen
-        int columnSize = width/3;
-
         authorNames = (TextView) itemView.findViewById(R.id.book_author);
-        authorNames.getLayoutParams().width = columnSize;
 
         title = (TextView)(itemView.findViewById(R.id.book_title));
-        title.getLayoutParams().width = columnSize;
 
         submitButton = (TextView)itemView.findViewById(R.id.submit_book);
-        submitButton.getLayoutParams().width = columnSize;
 
         mContext = context;
     }
