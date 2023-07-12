@@ -19,15 +19,18 @@ public class BookEntry extends RecyclerView.ViewHolder
     private Context mContext;
 
     //initializes row/EntryHolder Obj
-    public BookEntry(ViewGroup container, Context context)
+    public BookEntry(ViewGroup container, int width, Context context)
     {
         super(container);
 
         authorNames = (TextView) itemView.findViewById(R.id.book_author);
+        authorNames.getLayoutParams().width = width/3;
 
         title = (TextView)(itemView.findViewById(R.id.book_title));
+        title.getLayoutParams().width = width/3;
 
         submitButton = (TextView)itemView.findViewById(R.id.submit_book);
+        submitButton.getLayoutParams().width = width/3;
 
         mContext = context;
     }
