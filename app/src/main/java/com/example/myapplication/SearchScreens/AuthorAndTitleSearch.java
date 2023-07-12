@@ -79,7 +79,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                 {
                     //obtain list of all books that matches author search parameter
                     HashMap<String, List<Book>> authorBooks = data.getAuthorMap();
-                    List<Book> listOfBooks = authorBooks.get(author_input.getText().toString().trim());
+                    List<Book> listOfBooks = authorBooks.get(author_input.getText().toString().trim().toUpperCase());
 
                     //if there are some books by chosen author
                     if(listOfBooks != null)
@@ -91,7 +91,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                             user search parameters*/
                             for(int x = 0; x < listOfBooks.size(); x++)
                             {
-                                if(listOfBooks.get(x).returnTitle().equals(title_input.getText().toString().trim()))
+                                if(listOfBooks.get(x).returnTitle().equals(title_input.getText().toString().trim().toUpperCase()))
                                 {
                                     listOfOptions.add(listOfBooks.get(x));
                                 }
@@ -112,7 +112,7 @@ public class AuthorAndTitleSearch extends AppCompatActivity
                     List<Book> listOfBooks = data.getBooks();
                     for(int i = 0; i < listOfBooks.size(); i++)
                     {
-                        if(listOfBooks.get(i).returnTitle().equals(title_input.getText().toString().trim()))
+                        if(listOfBooks.get(i).returnTitle().equals(title_input.getText().toString().trim().toUpperCase()))
                         {
                             listOfOptions.add(listOfBooks.get(i));
                         }

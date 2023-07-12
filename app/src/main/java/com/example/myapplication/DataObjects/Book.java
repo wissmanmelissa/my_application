@@ -75,7 +75,7 @@ public class Book implements Comparable<Book>, Serializable
                 return false;
             }
 
-            authorNames[i] = names[i];
+            authorNames[i] = names[i].toUpperCase();
         }
 
         return true;
@@ -120,7 +120,7 @@ public class Book implements Comparable<Book>, Serializable
 
     private void setTitle(String id)
     {
-        title = id;
+        title = id.toUpperCase();
     }
 
     public String returnTitle()
