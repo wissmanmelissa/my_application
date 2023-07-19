@@ -56,4 +56,21 @@ public class ExampleUnitTest
         Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961" , "09", "30", "AUDIO", "FICTION", new String[]{"Norton Juster", "Frank"});
         assertNull(exampleBook2);
     }
+
+    @Test
+    public void pastCurrentDate()
+    {
+        LocalDate currentDate = LocalDate.now();
+        int exampleYear = currentDate.getYear() + 5;
+
+        Book exampleBook2 = Book.createBook("The Phantom Tollbooth", String.valueOf(exampleYear), "09", "30", "AUDIO", "FICTION", new String[]{"Norton Juster"});
+        assertNull(exampleBook2);
+    }
+
+    @Test
+    public void invalidDate()
+    {
+        Book exampleBook2 = Book.createBook("The Phantom Tollbooth", "1961" , "09", "75", "AUDIO", "FICTION", new String[]{"Norton Juster"});
+        assertNull(exampleBook2);
+    }
 }
