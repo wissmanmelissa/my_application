@@ -1,8 +1,14 @@
 package com.example.myapplication.DataObjects;
 
 import java.io.Serializable;
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+
+/**
+ * "Book" class represents the data for a book stored in the system,
+   including author names, publishing date, title, format and subject
+ * @author Melissa Wissman
+ * **/
 
 public class Book implements Comparable<Book>, Serializable
 {
@@ -32,7 +38,17 @@ public class Book implements Comparable<Book>, Serializable
     private Format format;
     private Subject subject;
 
-    //returns new book object if all book data is valid/accurate
+    /**
+     * Creates a new Book object using data passed IF the data is valid
+     * @return new Book Object
+     * @param pubYear a String representing the year the book was published, must be valid year
+     * @param pubMonth a String representing the month the book was published, must be valid month
+     * @param pubDay a String representing the day the book was published, must be valid day
+     * @param title a String representing the book title
+     * @param format a String representing the book format, must be valid format from enum Book.Format
+     * @param subject a String representing the book subject, must be valid subject from enum Book.Subject
+     * @param names a String array representing the book authors, all author names must include a first and last name
+     * **/
     public static Book createBook(String title, String pubYear, String pubMonth, String pubDay, String format, String subject, String[] names)
     {
         Book newBook = new Book();
@@ -54,7 +70,11 @@ public class Book implements Comparable<Book>, Serializable
         return newBook;
     }
 
-    //sets list of book authors and returns true if valid data passed to function
+    /**
+     * Sets the list of authors names IF all names include a valid first and last name
+     * @return a boolean if all author names given were valid
+     * @param names String array containing the full name of all authors for the book
+     * **/
     private boolean setAuthors(String[] names)
     {
         if(names.length == 0)
@@ -81,13 +101,22 @@ public class Book implements Comparable<Book>, Serializable
         return true;
     }
 
+    /**
+     * returns the list of authors
+     * @return String array of all author names
+     * **/
     public String[] returnAuthors()
     {
         return authorNames;
     }
 
-    //sets date variable if valid month, day and year value is passed
-    //to function, otherwise false is returned
+    /**
+     * Sets the published date IF a valid year, month, and day have been given
+     * @return a boolean if the year, day, and month are provided
+     * @param year String representing the published year
+     * @param day String representing the published day
+     * @param month String representing the published month
+     * **/
     private boolean setDate(String year, String month, String day)
     {
         try
@@ -105,7 +134,7 @@ public class Book implements Comparable<Book>, Serializable
                 return true;
             }
         }
-        catch(NumberFormatException | DateTimeParseException e)
+        catch(NumberFormatException | DateTimeException e)
         {
             return false;
         }
@@ -113,22 +142,38 @@ public class Book implements Comparable<Book>, Serializable
         return false;
     }
 
+    /**
+     * returns the published date
+     * @return a LocalDate object representing the published date
+     * **/
     public LocalDate returnDate()
     {
         return publishDate;
     }
 
+    /**
+     * Sets argument to all caps and uses it to set title
+     * @param id String representing title
+     * **/
     private void setTitle(String id)
     {
         title = id.toUpperCase();
     }
 
+    /**
+     * returns the title
+     * @return String representing the title
+     * **/
     public String returnTitle()
     {
         return title;
     }
 
-    //sets format and returns true if valid format passed to function
+    /**
+     * Sets the subject IF the format is a valid value of enum Book.Format
+     * @return a true if subject given was valid
+     * @param formatting String representing the format
+     * **/
     private boolean setFormat(String formatting)
     {
         String formattingType = formatting.toUpperCase();
@@ -145,6 +190,10 @@ public class Book implements Comparable<Book>, Serializable
         return false;
     }
 
+    /**
+     * returns the format
+     * @return String representing the format
+     * **/
     public String returnFormat()
     {
         if(format != null)
@@ -155,7 +204,11 @@ public class Book implements Comparable<Book>, Serializable
         return null;
     }
 
-    //sets subject and returns true if valid subject passed to function
+    /**
+     * Sets the subject IF the subject is a valid value of enum Book.Subject
+     * @return a true if subject given was valid
+     * @param topic String representing the subject
+     * **/
     private boolean setSubject(String topic)
     {
         String subjectType = topic.toUpperCase();
@@ -172,6 +225,10 @@ public class Book implements Comparable<Book>, Serializable
         return false;
     }
 
+    /**
+     * returns the subject
+     * @return String representing the subject
+     * **/
     public String returnSubject()
     {
         if(subject != null)
